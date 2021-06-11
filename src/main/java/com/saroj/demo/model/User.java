@@ -13,7 +13,6 @@ public class User {
     private String password;
     private String email;
     private String firstName;
-    @Column(name = "my_last_name")
     private String lastName;
     private String address;
 
@@ -51,7 +50,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword( String password) {
         this.password = password;
     }
 
