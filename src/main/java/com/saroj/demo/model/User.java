@@ -1,5 +1,7 @@
 package com.saroj.demo.model;
 
+import com.saroj.demo.dto.UserDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +30,15 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+    }
+    public User(UserDTO userDTO){
+        this.id= userDTO.getId();
+        this.username=userDTO.getUsername();
+        this.password=userDTO.getPassword();
+        this.email=userDTO.getEmail();
+        this.firstName=userDTO.getFirstName();
+        this.lastName=userDTO.getLastName();
+        this.address=userDTO.getAddress();
     }
 
     public int getId() {
