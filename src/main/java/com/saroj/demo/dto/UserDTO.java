@@ -10,6 +10,7 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String address;
+    private String fullName;
 
     public UserDTO() {
     }
@@ -22,6 +23,7 @@ public class UserDTO {
         this.firstName=user.getFirstName();
         this.lastName=user.getLastName();
         this.address=user.getAddress();
+        this.fullName=user.getFirstName() +" " + user.getLastName();
 
     }
 
@@ -79,5 +81,13 @@ public class UserDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

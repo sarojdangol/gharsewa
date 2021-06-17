@@ -7,7 +7,9 @@ import com.saroj.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -25,12 +27,23 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO findById(int id) {
-        return null;
+Optional<User> userOptional = userRepository.findById(id);
+User user= userOptional.orElseThrow(()-> new RuntimeException("user with given id not found"));
+UserDTO userDTO= new UserDTO(user);
+return userDTO;
+
+
     }
 
     @Override
     public List<UserDTO> findAll() {
-        return null;
+        List<User> users= userRepository.findAll();
+        List<UserDTO> userDTOs= new ArrayList<>();
+        for(User user:users){
+        UserDTO userDTO= new UserDTO(user);
+        userDTOs.add(userDTO);
+        }
+        return userDTOs;
     }
 
     @Override
