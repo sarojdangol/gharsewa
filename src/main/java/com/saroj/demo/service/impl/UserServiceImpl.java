@@ -48,11 +48,18 @@ return userDTO;
 
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
-        return null;
+        findById(userDTO.getId());
+    User user= new User(userDTO);
+    User updatedUser =userRepository.save(user);
+    UserDTO updatedUserDTO= new UserDTO(updatedUser);
+    return updatedUserDTO;
+
     }
 
     @Override
     public void deleteUser(int id) {
+//        findById(id);
+        userRepository.deleteById(id);
 
     }
 }
