@@ -1,6 +1,7 @@
 package com.saroj.demo.model;
 
 import com.saroj.demo.dto.UserDTO;
+import com.saroj.demo.utils.Roles;
 
 import javax.persistence.*;
 
@@ -17,6 +18,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String address;
+    private Roles roles;
+
 
     public User() {
     }
@@ -30,6 +33,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+
     }
     public User(UserDTO userDTO){
         this.id= userDTO.getId();
@@ -39,6 +43,7 @@ public class User {
         this.firstName=userDTO.getFirstName();
         this.lastName=userDTO.getLastName();
         this.address=userDTO.getAddress();
+        this.roles=userDTO.getRoles();
     }
 
     public int getId() {
@@ -95,5 +100,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 }

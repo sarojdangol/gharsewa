@@ -1,6 +1,7 @@
 package com.saroj.demo.dto;
 
 import com.saroj.demo.model.User;
+import com.saroj.demo.utils.Roles;
 
 public class UserDTO {
     private int id;
@@ -11,6 +12,7 @@ public class UserDTO {
     private String lastName;
     private String address;
     private String fullName;
+    private Roles roles;
 
     public UserDTO() {
     }
@@ -24,7 +26,7 @@ public class UserDTO {
         this.lastName=user.getLastName();
         this.address=user.getAddress();
         this.fullName=user.getFirstName() +" " + user.getLastName();
-
+        this.roles=user.getRoles();
     }
 
     public int getId() {
@@ -89,5 +91,13 @@ public class UserDTO {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 }
