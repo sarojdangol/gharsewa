@@ -1,6 +1,7 @@
 package com.saroj.demo.controller;
 
 import com.saroj.demo.dto.UserDTO;
+import com.saroj.demo.model.User;
 import com.saroj.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,12 @@ public class UserController {
     @PutMapping
     public UserDTO updateUser(@RequestBody UserDTO userDTO){
         return userService.updateUser(userDTO);
+
     }
+
+    @GetMapping("/login")
+    public UserDTO loginUser(@RequestParam String username,@RequestParam String password){
+        return userService.login(username,password);
+    }
+
 }

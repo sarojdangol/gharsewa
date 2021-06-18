@@ -62,4 +62,13 @@ return userDTO;
         userRepository.deleteById(id);
 
     }
+
+    @Override
+    public UserDTO login(String username, String password) {
+        Optional<User> OptionalUser = userRepository.findByUsernameAndPassword(username, password);
+        User user= OptionalUser.orElseThrow(()-> new RuntimeException("Username or password incorrect"));
+        return new UserDTO(user);
+    }
+
+
 }
