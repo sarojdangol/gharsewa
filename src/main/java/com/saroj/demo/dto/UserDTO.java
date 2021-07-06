@@ -1,11 +1,16 @@
 package com.saroj.demo.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.saroj.demo.model.User;
 import com.saroj.demo.utils.Roles;
+
+import java.time.LocalDate;
 
 public class UserDTO {
     private int id;
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
     private String password;
     private String email;
     private String firstName;
@@ -14,13 +19,24 @@ public class UserDTO {
     private String fullName;
     private Roles roles;
 
+    //for Admin Signup
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String workingShift;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String position;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private LocalDate joiningDate;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String branch;
+
+
     public UserDTO() {
     }
 
     public UserDTO(User user){
         this.id= user.getId();
         this.username=user.getUsername();
-        this.password=user.getPassword();
+//        this.password=user.getPassword();
         this.email=user.getEmail();
         this.firstName=user.getFirstName();
         this.lastName=user.getLastName();
@@ -99,5 +115,37 @@ public class UserDTO {
 
     public void setRoles(Roles roles) {
         this.roles = roles;
+    }
+
+    public String getWorkingShift() {
+        return workingShift;
+    }
+
+    public void setWorkingShift(String workingShift) {
+        this.workingShift = workingShift;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 }

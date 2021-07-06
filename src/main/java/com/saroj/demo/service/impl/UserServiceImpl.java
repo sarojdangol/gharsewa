@@ -1,9 +1,12 @@
 package com.saroj.demo.service.impl;
 
 import com.saroj.demo.dto.UserDTO;
+import com.saroj.demo.model.Admin;
 import com.saroj.demo.model.User;
 import com.saroj.demo.repository.UserRepository;
+import com.saroj.demo.service.AdminService;
 import com.saroj.demo.service.UserService;
+import com.saroj.demo.utils.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +20,22 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AdminService adminService;
+
     @Override
     public UserDTO addUser(UserDTO userDTO) {
         User user= new User(userDTO);  // copy userDTO to user
         User savedUser = userRepository.save(user);//save to database
+        if(userDTO.getRoles().equals(Roles.ADMIN)){
+            Admin admin= new Admin();
+            admin.getBranch();
+            admin.setJoiningDate(userDTO.getJoiningDate());
+            admin.setWorkingShift(userDTO.getWorkingShift());
+            admin.setPosition(userDTO.getPosition());
+            admin.setUser(savedUser);
+            adminService.addAdmin(admin);
+        }
         UserDTO savedUserDTO= new UserDTO(savedUser); //copy user to userDTO
         return savedUserDTO;
     }

@@ -1,35 +1,30 @@
-package com.saroj.demo.model;
+package com.saroj.demo.dto;
 
-import com.saroj.demo.dto.AdminDTO;
+import com.saroj.demo.model.Admin;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "admin")
-public class Admin {
+public class AdminDTO {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String workingShift;
     private LocalDate joiningDate;
     private String branch;
     private String position;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private UserDTO userDTO;
 
-    public Admin() {
+    public AdminDTO(Admin admin){
+        this.id=admin.getId();
+        this.workingShift=admin.getWorkingShift();
+        this.joiningDate=admin.getJoiningDate();
+        this.branch=admin.getBranch();
+        this.position=admin.getPosition();
 
     }
-    public Admin(AdminDTO adminDTO){
-        this.id=adminDTO.getId();
-        this.workingShift=adminDTO.getWorkingShift();
-        this.joiningDate=adminDTO.getJoiningDate();
-        this.branch=adminDTO.getBranch();
-        this.position=adminDTO.getPosition();
+
+
+    public AdminDTO() {
     }
 
     public int getId() {
@@ -57,7 +52,7 @@ public class Admin {
     }
 
     public String getBranch() {
-        return this.branch;
+        return branch;
     }
 
     public void setBranch(String branch) {
@@ -72,14 +67,11 @@ public class Admin {
         this.position = position;
     }
 
-    public User getUser() {
-        return user;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
-
-
 }
-
